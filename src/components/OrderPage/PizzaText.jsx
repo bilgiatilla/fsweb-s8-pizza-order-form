@@ -1,6 +1,6 @@
 import React from "react";
 
-function PizzaInfo() {
+function PizzaText() {
   return (
     <section className="pizza-info">
       <p className="breadcrumb">
@@ -29,4 +29,4 @@ function PizzaInfo() {
   );
 }
 
-export default PizzaInfo;
+export default PizzaText;
