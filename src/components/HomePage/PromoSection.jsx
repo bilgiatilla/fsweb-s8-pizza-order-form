@@ -58,7 +58,7 @@ function PromoSection() {
           <img
             src="/images/iteration-2-images/cta/kart-3.png"
             alt="Kurye görseli"
-            className="promo-side-image"
+            className="promo-side-moto-image"
           />
         </div>
       </div>

@@ -547,7 +547,6 @@ img {
 .hero-pizza-wrapper {
   position: absolute;
   left: 50%;
-  bottom: -180px;
   transform: translateX(-50%);
   z-index: 2;
   width: min(900px, 92vw);
@@ -556,6 +555,7 @@ img {
 .hero-pizza {
   width: 100%;
   object-fit: contain;
+   transform: rotate(180deg);
 }
 
 .category-bar {
@@ -655,8 +655,7 @@ img {
   position: absolute;
   right: 0;
   bottom: 0;
-  width: 75%;
-  max-width: 420px;
+  width: 100%;
 }
 
 .promo-card-dark {
@@ -692,8 +691,14 @@ img {
   position: absolute;
   right: 0;
   bottom: 0;
-  width: 52%;
-  max-width: 320px;
+  width: 100%;
+}
+
+.promo-side-moto-image {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 100%;
 }
 
 .product-section {
@@ -930,5 +935,203 @@ img {
 
   .section-title {
     font-size: 1.7rem;
+  }
+}
+
+/* SUCCESS PAGE - MOBILE FIRST */
+
+.success-page {
+  min-height: 100vh;
+  background: #ce2829;
+  padding: 28px 20px 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.success-container {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.success-logo {
+  color: #ffffff;
+  font-family: "Barlow", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 56px;
+}
+
+.success-script {
+  color: #fdc913;
+  font-family: "Satisfy", cursive;
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.success-title {
+  color: #ffffff;
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 3rem;
+  line-height: 1;
+  font-weight: 300;
+  margin-bottom: 28px;
+}
+
+.success-divider {
+  width: 100%;
+  max-width: 360px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.5);
+  margin-bottom: 36px;
+}
+
+.success-product-section {
+  width: 100%;
+  max-width: 360px;
+  text-align: left;
+  color: #ffffff;
+  margin-bottom: 36px;
+}
+
+.success-product-title {
+  text-align: center;
+  font-family: "Barlow", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 28px;
+}
+
+.success-details p {
+  font-family: "Barlow", sans-serif;
+  font-size: 1rem;
+  line-height: 1.9;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.success-details span {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.success-details strong {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.toppings-line {
+  max-width: 280px;
+}
+
+.success-summary-card {
+  width: 100%;
+  max-width: 280px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 8px;
+  padding: 24px 20px;
+  color: #ffffff;
+  text-align: left;
+  margin-bottom: 24px;
+}
+
+.success-summary-card h3 {
+  font-family: "Barlow", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 22px;
+}
+
+.success-summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+  font-family: "Barlow", sans-serif;
+  font-size: 1rem;
+}
+
+.success-summary-row strong {
+  font-weight: 700;
+}
+
+.success-home-link {
+  color: #ffffff;
+  font-family: "Barlow", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  border-bottom: 1px solid transparent;
+  transition: 0.2s ease;
+}
+
+.success-home-link:hover {
+  border-color: #ffffff;
+}
+
+@media (min-width: 768px) {
+  .success-page {
+    padding: 40px 24px 60px;
+  }
+
+  .success-container {
+    max-width: 760px;
+  }
+
+  .success-logo {
+    font-size: 3rem;
+    margin-bottom: 80px;
+  }
+
+  .success-script {
+    font-size: 2.4rem;
+    margin-bottom: 12px;
+  }
+
+  .success-title {
+    font-size: 6rem;
+    margin-bottom: 34px;
+  }
+
+  .success-divider {
+    max-width: 720px;
+    margin-bottom: 42px;
+  }
+
+  .success-product-section {
+    max-width: 340px;
+    margin-bottom: 48px;
+  }
+
+  .success-product-title {
+    font-size: 2rem;
+    margin-bottom: 32px;
+  }
+
+  .success-details p {
+    font-size: 1.15rem;
+  }
+
+  .toppings-line {
+    max-width: 320px;
+  }
+
+  .success-summary-card {
+    max-width: 360px;
+    padding: 32px 28px;
+  }
+
+  .success-summary-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 24px;
+  }
+
+  .success-summary-row {
+    font-size: 1.2rem;
+  }
+
+  .success-home-link {
+    font-size: 1.05rem;
   }
 }

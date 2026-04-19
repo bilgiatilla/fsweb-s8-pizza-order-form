@@ -7,6 +7,7 @@ import DoughSelector from "../components/OrderPage/DoughSelector";
 import OrderNote from "../components/OrderPage/OrderNote";
 import OrderSummary from "../components/OrderPage/OrderSummary";
 import PizzaText from "../components/OrderPage/PizzaText";
+import { useNavigate } from "react-router-dom";
 
 const toppingsData = [
   "Pepperoni",
@@ -27,7 +28,7 @@ const toppingsData = [
 function OrderPage() {
   const basePrice = 85.5;
   const toppingPrice = 5;
-
+  const navigate = useNavigate();
   const [size, setSize] = useState("M");
   const [dough, setDough] = useState("");
   const [selectedToppings, setSelectedToppings] = useState([
@@ -70,23 +71,28 @@ function OrderPage() {
   const isFormValid = size && dough;
 
   const handleSubmit = () => {
-    if (!isFormValid) {
-      alert("Lütfen boyut ve hamur seçiniz.");
-      return;
-    }
+  if (!isFormValid) {
+    alert("Lütfen boyut ve hamur seçiniz.");
+    return;
+  }
 
-    const orderData = {
-      size,
-      dough,
-      selectedToppings,
-      note,
-      quantity,
-      totalPrice,
-    };
-
-    console.log("Sipariş verildi:", orderData);
-    alert("Sipariş başarıyla oluşturuldu.");
+  const orderData = {
+    productName: "Position Absolute Acı Pizza",
+    size,
+    dough,
+    selectedToppings,
+    note,
+    quantity,
+    extrasTotal,
+    totalPrice,
   };
+
+  console.log("Sipariş verildi:", orderData);
+
+  navigate("/success", {
+    state: orderData,
+  });
+};
 
   return (
     <div className="orderpage">

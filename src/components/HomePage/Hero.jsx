@@ -28,7 +28,7 @@ function Hero() {
 
       <div className="hero-pizza-wrapper">
         <img
-          src="/images/iteration-2-images/pictures/food-2.png"
+          src="/images/iteration-2-images/pictures/form-banner.png"
           alt="Büyük pizza"
           className="hero-pizza"
         />
