@@ -11,6 +11,7 @@ function DoughSelector({ dough, setDough }) {
         className="dough-select"
         value={dough}
         onChange={(e) => setDough(e.target.value)}
+        data-testid="dough-select"
       >
         <option value="">--Hamur Kalınlığı Seç --</option>
         <option value="İnce">İnce</option>

@@ -7,8 +7,9 @@ function PromoSection() {
       <div className="container promo-grid">
         <div className="promo-card promo-card-large">
           <div className="promo-card-content">
-            <h2>Özel Lezzetus</h2>
-            <p>Position:Absolute Acı Burger</p>
+            <h2>Özel</h2>
+            <h2>Lezzetus</h2>
+            <p>Position: Absolute Acı Burger</p>
 
             <Link to="/order">
               <button>SİPARİŞ VER</button>

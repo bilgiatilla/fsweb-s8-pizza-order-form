@@ -30,6 +30,7 @@ function ToppingsSelector({
                 checked={isChecked}
                 disabled={isDisabled}
                 onChange={() => handleToppingChange(topping)}
+                data-testid={`topping-${topping.toLowerCase().replaceAll(" ", "-")}`}
               />
               <span className="custom-checkbox">{isChecked ? "✓" : ""}</span>
               <span>{topping}</span>

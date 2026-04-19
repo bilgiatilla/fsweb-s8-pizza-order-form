@@ -21,6 +21,7 @@ function SizeSelector({ size, setSize }) {
               value={item}
               checked={size === item}
               onChange={(e) => setSize(e.target.value)}
+              data-testid={`size-${item.toLowerCase()}`}
             />
             <span>{item}</span>
           </label>

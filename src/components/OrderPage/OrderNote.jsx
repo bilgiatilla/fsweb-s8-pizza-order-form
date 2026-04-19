@@ -11,6 +11,7 @@ function OrderNote({ note, setNote }) {
         placeholder="Siparişine eklemek istediğin bir not var mı?"
         className="order-note-textarea"
         rows="4"
+        data-testid="order-note"
       />
     </section>
   );

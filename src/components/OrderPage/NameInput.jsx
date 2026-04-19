@@ -17,6 +17,7 @@ function NameInput({ customerName, setCustomerName }) {
         className={`name-input ${hasError ? "input-error" : ""}`}
         minLength={3}
         required
+        data-testid="name-input"
       />
 
       {hasError && (

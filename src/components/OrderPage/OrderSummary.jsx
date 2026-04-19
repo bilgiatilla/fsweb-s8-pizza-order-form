@@ -40,6 +40,7 @@ function OrderSummary({
           className="order-btn"
           onClick={onSubmit}
           disabled={!isFormValid || isSubmitting}
+          data-testid="submit-order"
         >
           {isSubmitting ? "GÖNDERİLİYOR..." : "SİPARİŞ VER"}
         </button>

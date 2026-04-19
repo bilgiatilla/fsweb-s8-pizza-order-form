@@ -5,10 +5,12 @@ function SuccessPage() {
   const { state } = useLocation();
 
   const orderData = state || {
+    customerName: "Atilla",
     productName: "Position Absolute Acı Pizza",
     size: "L",
     dough: "Süper İnce",
     selectedToppings: ["Pepperoni", "Sosis", "Mısır", "Ananas", "Jalepeno"],
+    note: "Bol malzemeli olsun",
     extrasTotal: 25,
     totalPrice: 110.5,
   };
@@ -29,6 +31,9 @@ function SuccessPage() {
 
           <div className="success-details">
             <p>
+              <span>İsim:</span> <strong>{orderData.customerName}</strong>
+            </p>
+            <p>
               <span>Boyut:</span> <strong>{orderData.size}</strong>
             </p>
             <p>
@@ -38,6 +43,11 @@ function SuccessPage() {
               <span>Ek Malzemeler:</span>{" "}
               <strong>{orderData.selectedToppings.join(", ")}</strong>
             </p>
+            {orderData.note && (
+              <p className="note-line">
+                <span>Not:</span> <strong>{orderData.note}</strong>
+              </p>
+            )}
           </div>
         </section>
 
