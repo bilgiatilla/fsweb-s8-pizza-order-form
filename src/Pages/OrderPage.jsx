@@ -8,6 +8,8 @@ import OrderNote from "../components/OrderPage/OrderNote";
 import OrderSummary from "../components/OrderPage/OrderSummary";
 import PizzaText from "../components/OrderPage/PizzaText";
 import { useNavigate } from "react-router-dom";
+import NameInput from "../components/OrderPage/NameInput";
+import axios from "axios";
 
 const toppingsData = [
   "Pepperoni",
@@ -29,27 +31,31 @@ function OrderPage() {
   const basePrice = 85.5;
   const toppingPrice = 5;
   const navigate = useNavigate();
-  const [size, setSize] = useState("M");
+  const [customerName, setCustomerName] = useState("");
+  const [size, setSize] = useState("");
   const [dough, setDough] = useState("");
-  const [selectedToppings, setSelectedToppings] = useState([
-    "Pepperoni",
-    "Sosis",
-    "Mısır",
-    "Ananas",
-    "Jalepeno",
-  ]);
+  const [selectedToppings, setSelectedToppings] = useState([]);
   const [note, setNote] = useState("");
   const [quantity, setQuantity] = useState(1);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const nameIsValid = customerName.trim().length >= 3;
+  const sizeIsValid = size !== "";
+  const doughIsValid = dough !== "";
+  const toppingsAreValid =
+    selectedToppings.length >= 4 && selectedToppings.length <= 10;
 
   const handleToppingChange = (topping) => {
     const exists = selectedToppings.includes(topping);
 
     if (exists) {
-      setSelectedToppings(selectedToppings.filter((item) => item !== topping));
-    } else {
-      if (selectedToppings.length >= 10) return;
-      setSelectedToppings([...selectedToppings, topping]);
+      setSelectedToppings((prev) => prev.filter((item) => item !== topping));
+      return;
     }
+
+    if (selectedToppings.length >= 10) return;
+
+    setSelectedToppings((prev) => [...prev, topping]);
   };
 
   const extrasTotal = selectedToppings.length * toppingPrice;
@@ -60,39 +66,81 @@ function OrderPage() {
 
   const handleDecrease = () => {
     if (quantity > 1) {
-      setQuantity(quantity - 1);
+      setQuantity((prev) => prev - 1);
     }
   };
 
   const handleIncrease = () => {
-    setQuantity(quantity + 1);
+    setQuantity((prev) => prev + 1);
   };
 
-  const isFormValid = size && dough;
+  const isFormValid =
+    nameIsValid && sizeIsValid && doughIsValid && toppingsAreValid;
 
-  const handleSubmit = () => {
-  if (!isFormValid) {
-    alert("Lütfen boyut ve hamur seçiniz.");
-    return;
-  }
+  const handleSubmit = async () => {
+    if (!isFormValid || isSubmitting) {
+      return;
+    }
 
-  const orderData = {
+    const orderData = {
+      customerName: customerName.trim(),
+      productName: "Position Absolute Acı Pizza",
+      size,
+      dough,
+      selectedToppings,
+      note: note.trim(),
+      quantity,
+      extrasTotal,
+      totalPrice,
+    };
+
+    const payload = {
+  data: {
+    customerName: customerName.trim(),
     productName: "Position Absolute Acı Pizza",
     size,
     dough,
     selectedToppings,
-    note,
+    note: note.trim(),
     quantity,
     extrasTotal,
     totalPrice,
-  };
-
-  console.log("Sipariş verildi:", orderData);
-
-  navigate("/success", {
-    state: orderData,
-  });
+  },
 };
+
+    try {
+      setIsSubmitting(true);
+
+      const response = await axios.post(
+        "https://reqres.in/api/collections/products/records?project_id=13945",
+        payload,
+        {
+          headers: {
+            "x-api-key": "pro_530c5b170a6ede890ce195eada300915f4ed06419b7a0af862879b77e6591d27",
+            "Content-Type": "application/json",
+          },
+        },
+      );
+
+      console.log("API response:", response.data);
+      console.log("Sipariş özeti:", {
+        ...orderData,
+        response: response.data,
+      });
+
+      navigate("/success", {
+        state: {
+          ...orderData,
+          response: response.data,
+        },
+      });
+    } catch (error) {
+      console.error("Sipariş gönderilemedi:", error.response?.data || error.message);
+      alert("Sipariş gönderilirken bir hata oluştu.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="orderpage">
@@ -121,6 +169,11 @@ function OrderPage() {
             handleToppingChange={handleToppingChange}
           />
 
+          <NameInput
+            customerName={customerName}
+            setCustomerName={setCustomerName}
+          />
+
           <OrderNote note={note} setNote={setNote} />
 
           <OrderSummary
@@ -130,6 +183,8 @@ function OrderPage() {
             extrasTotal={extrasTotal}
             totalPrice={totalPrice}
             onSubmit={handleSubmit}
+            isFormValid={isFormValid}
+            isSubmitting={isSubmitting}
           />
         </section>
       </main>

@@ -7,13 +7,19 @@ function OrderSummary({
   extrasTotal,
   totalPrice,
   onSubmit,
+  isFormValid,
+  isSubmitting,
 }) {
   return (
     <section className="summary-wrapper">
       <div className="quantity-box">
-        <button onClick={onDecrease}>-</button>
+        <button type="button" onClick={onDecrease}>
+          -
+        </button>
         <span>{quantity}</span>
-        <button onClick={onIncrease}>+</button>
+        <button type="button" onClick={onIncrease}>
+          +
+        </button>
       </div>
 
       <div className="summary-card">
@@ -29,8 +35,13 @@ function OrderSummary({
           <span>{totalPrice.toFixed(2)}₺</span>
         </div>
 
-        <button className="order-btn" onClick={onSubmit}>
-          SİPARİŞ VER
+        <button
+          type="button"
+          className="order-btn"
+          onClick={onSubmit}
+          disabled={!isFormValid || isSubmitting}
+        >
+          {isSubmitting ? "GÖNDERİLİYOR..." : "SİPARİŞ VER"}
         </button>
       </div>
     </section>

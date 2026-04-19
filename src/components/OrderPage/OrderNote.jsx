@@ -4,12 +4,13 @@ function OrderNote({ note, setNote }) {
   return (
     <section className="order-note-section">
       <h3>Sipariş Notu</h3>
-      <input
-        type="text"
-        placeholder="Siparişine eklemek istediğin bir not var mı?"
+
+      <textarea
         value={note}
         onChange={(e) => setNote(e.target.value)}
-        className="order-note-input"
+        placeholder="Siparişine eklemek istediğin bir not var mı?"
+        className="order-note-textarea"
+        rows="4"
       />
     </section>
   );
